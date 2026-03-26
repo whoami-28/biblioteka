@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0'); /* Сделали иконки еще тоньше (wght: 200) для изящности */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        background: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #F7FAFC 100%);
+        background-attachment: fixed;
+        color: #030813;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .font-serif {
+        font-family: 'Noto Serif', serif;
+        letter-spacing: -0.03em;
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #d6e0f6;
+    }
+}
+
+@layer components {
+    .glass {
+        @apply bg-[#F7FAFC]/70 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_rgba(0,0,0,0.02)];
+    }
+
+    .book-card {
+        @apply block group transition-all duration-1000 ease-lux;
+    }
+
+    .book-card img {
+        @apply w-full h-full object-cover transition-all duration-1000 ease-lux grayscale-[30%] opacity-90 scale-100;
+    }
+
+    .book-card:hover img {
+        @apply grayscale-0 opacity-100 scale-105;
+    }
+
+    .book-card:hover .image-wrapper {
+        @apply shadow-editorial -translate-y-2;
+    }
+
+    .link-editorial {
+        @apply relative inline-block text-primary pb-0.5 overflow-hidden;
+    }
+    .link-editorial::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-full h-[1px] bg-primary transform -translate-x-full transition-transform duration-500 ease-lux origin-left;
+    }
+    .link-editorial:hover::after {
+        @apply translate-x-0;
+    }
+}
+
+.page-enter {
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes fade-in-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

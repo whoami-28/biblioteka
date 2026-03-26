@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Оформление заказа | The Modern Curator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/checkout.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F7FAFC]">
+
+    <div id="app-header"></div>
+    <div id="app-search"></div>
+
+    <main class="pt-8 max-w-[1400px] mx-auto px-8 min-h-screen page-enter">
+        <div class="mb-16 mt-8 relative max-w-3xl mx-auto">
+            <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gray-200 -z-10"></div>
+            <div class="flex justify-between items-center">
+                <div class="flex flex-col items-center gap-2 bg-[#F7FAFC] px-4">
+                    <div class="w-8 h-8 rounded-full border-2 border-primary bg-primary flex items-center justify-center text-white text-xs font-bold transition-colors">1</div>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-primary transition-colors">Корзина</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 bg-[#F7FAFC] px-4">
+                    <div id="progress-step-2" class="w-8 h-8 rounded-full border-2 border-primary bg-[#F7FAFC] flex items-center justify-center text-primary text-xs font-bold transition-colors">2</div>
+                    <span id="progress-text-2" class="text-[10px] uppercase tracking-widest font-bold text-gray-500 transition-colors">Доставка</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 bg-[#F7FAFC] px-4">
+                    <div id="progress-step-3" class="w-8 h-8 rounded-full border-2 border-gray-200 bg-[#F7FAFC] flex items-center justify-center text-gray-400 text-xs font-bold transition-colors">3</div>
+                    <span id="progress-text-3" class="text-[10px] uppercase tracking-widest font-bold text-gray-400 transition-colors">Оплата</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 bg-[#F7FAFC] px-4">
+                    <div id="progress-step-4" class="w-8 h-8 rounded-full border-2 border-gray-200 bg-[#F7FAFC] flex items-center justify-center text-gray-400 text-xs font-bold transition-colors">4</div>
+                    <span id="progress-text-4" class="text-[10px] uppercase tracking-widest font-bold text-gray-400 transition-colors">Подтверждение</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-12">
+            <div id="main-checkout-column" class="col-span-12 lg:col-span-8 relative transition-all duration-500">
+                
+                <div id="step-1-content" class="transition-opacity duration-300">
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold mb-12 text-primary tracking-tight">Проверьте ваш выбор</h1>
+                    <div class="space-y-6 mb-16">
+                        <div class="flex gap-8 bg-white p-6 shadow-sm border border-gray-100 group relative transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <a href="book_detail.html" class="w-32 h-44 flex-shrink-0 bg-gray-100 overflow-hidden block">
+                                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=300&q=80" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" alt="Book">
+                            </a>
+                            <div class="flex-grow flex flex-col justify-between py-2">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <a href="book_detail.html" class="text-xl font-serif italic text-primary hover:underline">Этика Брутализма: Том I</a>
+                                        <span class="text-lg font-bold text-primary">$124.00</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 max-w-md font-light">Архивное издание в твердом переплете. Содержит галогенидо-серебряные отпечатки европейских модернистских достопримечательностей.</p>
+                                </div>
+                                <div class="flex items-center gap-6 mt-4">
+                                    <div class="flex items-center border border-gray-200 px-3 py-1">
+                                        <button class="text-xs hover:text-primary">—</button>
+                                        <span class="px-4 text-sm font-bold">1</span>
+                                        <button class="text-xs hover:text-primary">+</button>
+                                    </div>
+                                    <button class="text-[10px] uppercase font-bold tracking-widest text-gray-400 hover:text-primary transition-colors">Отложить</button>
+                                    <button class="text-[10px] uppercase font-bold tracking-widest text-red-400 hover:text-red-600 transition-colors">Удалить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-2-content" class="hidden transition-opacity duration-300">
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold mb-12 text-primary tracking-tight">Адрес доставки</h1>
+                    <section class="bg-white p-10 shadow-sm border border-gray-100">
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Полное имя</label>
+                                <input type="text" placeholder="Джулиан Вэйн" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Электронная почта</label>
+                                <input type="email" placeholder="j.vane@curator.com" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2 md:col-span-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Адрес</label>
+                                <input type="text" placeholder="Ул. Архивная 42, Офис 300" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Город</label>
+                                <input type="text" placeholder="Лондон" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Почтовый индекс</label>
+                                <input type="text" placeholder="EC1A 1BB" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <div id="step-3-content" class="hidden transition-opacity duration-300">
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold mb-12 text-primary tracking-tight">Оплата</h1>
+                    <section class="bg-white p-10 shadow-sm border border-gray-100">
+                        
+                        <div class="mb-10 flex gap-4">
+                            <label class="flex items-center gap-3 cursor-pointer border border-primary p-4 bg-gray-50 flex-1 shadow-sm transition-all">
+                                <input type="radio" name="payment" checked class="text-primary focus:ring-primary w-4 h-4">
+                                <span class="font-bold text-sm">Банковская карта</span>
+                            </label>
+                            <label class="flex items-center gap-3 border border-gray-200 p-4 flex-1 opacity-50 cursor-not-allowed">
+                                <input type="radio" name="payment" disabled class="text-primary w-4 h-4">
+                                <span class="font-bold text-sm text-gray-500">PayPal (скоро)</span>
+                            </label>
+                        </div>
+
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            <div class="flex flex-col gap-2 md:col-span-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Номер карты</label>
+                                <input type="text" placeholder="0000 0000 0000 0000" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary font-mono tracking-widest text-lg transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Срок действия</label>
+                                <input type="text" placeholder="ММ/ГГ" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary font-mono tracking-widest text-lg transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">CVC</label>
+                                <input type="password" placeholder="***" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary font-mono tracking-widest text-lg transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-2 md:col-span-2">
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Имя на карте</label>
+                                <input type="text" placeholder="JULIAN VANE" class="border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary uppercase transition-colors">
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <div id="step-4-content" class="hidden transition-opacity duration-300 text-center py-20">
+                    <span class="material-symbols-outlined text-[80px] text-green-700 mb-8" style="font-variation-settings: 'FILL' 0, 'wght' 200;">check_circle</span>
+                    <h1 class="text-5xl font-serif font-bold mb-6 text-primary tracking-tight">Ваш заказ подтвержден</h1>
+                    <p class="text-lg text-gray-500 mb-12 max-w-xl mx-auto font-light leading-relaxed">
+                        Благодарим за пополнение вашей коллекции. Номер вашей квитанции <strong class="text-primary font-bold">#MC-84920</strong>. Копия деталей заказа была отправлена на вашу почту.
+                    </p>
+                    <a href="account_profile.html" class="inline-block bg-primary text-white px-10 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-[#1A202C] transition-all shadow-editorial hover:-translate-y-1">
+                        Перейти в личный кабинет
+                    </a>
+                </div>
+
+            </div>
+
+            <div id="checkout-sidebar" class="col-span-12 lg:col-span-4 transition-opacity duration-300">
+                <div class="sticky top-12 bg-primary text-white p-10 shadow-editorial">
+                    <h2 class="text-3xl font-serif italic mb-8">Сумма заказа</h2>
+                    <div class="space-y-4 mb-8 text-sm opacity-80 font-light">
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Подытог</span><span>$604.00</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Доставка (со страховкой)</span><span>$35.00</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Расчетный налог</span><span>$48.32</span></div>
+                        <div class="flex justify-between pt-4 text-xl font-bold opacity-100"><span>Итого</span><span>$687.32</span></div>
+                    </div>
+                    
+                    <button id="checkout-action-btn" onclick="CheckoutFlow.nextStep()" class="w-full bg-white text-primary py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-200 transition-colors">
+                        Перейти к доставке
+                    </button>
+                    
+                    <p class="text-[10px] text-white/40 leading-relaxed text-center mt-4">
+                        Продолжая, вы соглашаетесь с нашим <a href="#" class="underline hover:text-white">Соглашением о продажах</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.init('cart');
+        });
+    </script>
+</body>
+</html>

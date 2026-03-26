@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Подборки | The Modern Curator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/catalog.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F7FAFC] pb-20">
+    
+    <div id="app-header"></div>
+    <div id="app-search"></div>
+
+    <main class="pt-12 max-w-[1400px] mx-auto px-8 min-h-screen page-enter">
+        <header class="mb-16">
+            <h1 class="text-5xl md:text-6xl font-serif font-bold tracking-tight text-primary mb-4">Кураторские подборки</h1>
+            <p class="text-academic-slate max-w-2xl font-light leading-relaxed">Специальные коллекции, заботливо собранные нашими экспертами вокруг единой темы или эстетики.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            <aside class="lg:col-span-1 space-y-10">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-serif text-xl italic text-primary">Тематика</h2>
+                    <button onclick="CatalogFilters.filterByCategory('all', document.getElementById('btn-all'))" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-primary transition-colors">Сбросить всё</button>
+                </div>
+
+                <section>
+                    <div class="flex flex-wrap gap-2">
+                        <button id="btn-all" onclick="CatalogFilters.filterByCategory('all', this)" class="filter-btn px-4 py-2 bg-primary text-white rounded-full text-xs cursor-pointer transition-colors">Все</button>
+                        <button onclick="CatalogFilters.filterByCategory('minimalism', this)" class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-xs cursor-pointer transition-colors hover:bg-gray-200">Минимализм</button>
+                        <button onclick="CatalogFilters.filterByCategory('classics', this)" class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-xs cursor-pointer transition-colors hover:bg-gray-200">Классика</button>
+                    </div>
+                </section>
+            </aside>
+
+            <div class="lg:col-span-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <a href="catalog.html" class="catalog-item group block" data-category="minimalism">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-100 mb-4 relative shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105">
+                        </div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Выбор редакции</p>
+                        <h3 class="font-serif text-2xl font-bold text-primary group-hover:underline">Эстетика Пустоты</h3>
+                        <p class="text-sm text-gray-500 mt-2 font-light">12 книг, исследующих силу негативного пространства.</p>
+                    </a>
+
+                    <a href="catalog.html" class="catalog-item group block" data-category="classics">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-100 mb-4 relative shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1544716278-e513176f20b5?q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105">
+                        </div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Историческая перспектива</p>
+                        <h3 class="font-serif text-2xl font-bold text-primary group-hover:underline">Золотой Век Печати</h3>
+                        <p class="text-sm text-gray-500 mt-2 font-light">Первые издания, изменившие ход истории.</p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.init('curations'); // Подсветит "Подборки" в шапке
+        });
+    </script>
+</body>
+</html>
