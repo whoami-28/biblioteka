@@ -1,0 +1,26 @@
+{
+  "name": "biblioteka",
+  "version": "1.0.0",
+  "description": "\"# biblioteka\"",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whoami-28/biblioteka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/whoami-28/biblioteka/issues"
+  },
+  "homepage": "https://github.com/whoami-28/biblioteka#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^6.0.1"
+  }
+}
