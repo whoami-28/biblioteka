@@ -7,127 +7,72 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/main.js"></script>
     <script src="js/components.js"></script>
+    <script src="js/search.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-[#F7FAFC]">
+<body class="bg-[#F7FAFC] flex flex-col min-h-screen">
 
     <div id="app-header"></div>
     <div id="app-search"></div>
 
-    <main class="pt-12 max-w-[1400px] mx-auto px-8 min-h-screen pt-8 page-enter">
+    <main class="pt-12 max-w-[1400px] mx-auto px-8 min-h-screen page-enter flex-grow w-full">
         <header class="mb-16">
             <h1 class="text-5xl md:text-7xl font-serif font-bold tracking-tight text-primary mb-6">Результаты поиска</h1>
             <div class="flex items-baseline space-x-3 mb-8">
                 <span class="text-gray-500 font-light">Показаны результаты для</span>
-                <span class="text-2xl font-serif italic text-primary">"Архитектура Тишины"</span>
-            </div>
-            <div class="bg-white p-4 inline-flex items-center space-x-4 rounded-sm border border-gray-100 shadow-sm">
-                <span class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Возможно, вы искали:</span>
-                <a class="text-primary font-serif italic border-b border-primary hover:text-gray-500 transition-colors" href="search_results.html">Эстетика Тишины</a>
+                <span id="search-query-display" class="text-2xl font-serif italic text-primary">"..."</span>
             </div>
         </header>
 
         <section class="grid grid-cols-12 gap-12">
             <aside class="col-span-12 md:col-span-3">
-                <h3 class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-6">Уточнить поиск</h3>
+                <h3 class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-6">Статистика</h3>
                 <ul class="space-y-4">
-                    <li><a class="text-sm hover:text-primary transition-colors flex justify-between text-gray-500 font-light" href="#">Все результаты <span>42</span></a></li>
-                    <li><a class="text-sm font-bold flex justify-between text-primary" href="#">Книги <span class="bg-primary text-white px-2 py-0.5 rounded-full text-[10px] flex items-center">12</span></a></li>
-                    <li><a class="text-sm hover:text-primary transition-colors flex justify-between text-gray-500 font-light" href="#">Авторы <span>08</span></a></li>
-                    <li><a class="text-sm hover:text-primary transition-colors flex justify-between text-gray-500 font-light" href="#">Коллекции <span>22</span></a></li>
+                    <li><div class="text-sm flex justify-between text-gray-500 font-bold">Всего найдено <span id="count-all">0</span></div></li>
+                    <li><div class="text-sm flex justify-between text-gray-500 font-light">Книги <span id="count-books">0</span></div></li>
+                    <li><div class="text-sm flex justify-between text-gray-500 font-light">Архивы <span id="count-archives">0</span></div></li>
+                    <li><div class="text-sm flex justify-between text-gray-500 font-light">Подборки <span id="count-curations">0</span></div></li>
                 </ul>
             </aside>
             
-            <div class="col-span-12 md:col-span-9">
-                <div class="mb-20">
+            <div class="col-span-12 md:col-span-9" id="results-wrapper">
+                <div id="section-books" class="mb-20 hidden">
                     <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
                         <h2 class="text-3xl font-serif italic text-primary">Книги</h2>
-                        <a class="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors" href="catalog.html">Смотреть весь каталог</a>
+                        <a class="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors" href="catalog.html">В каталог</a>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <a href="book_detail.html" class="book-card block group">
-                            <div class="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 shadow-sm relative">
-                                <img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105 group-hover:grayscale-0" src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=500&q=80" alt="Book"/>
-                            </div>
-                            <h4 class="font-serif font-bold text-xl mb-1 text-primary group-hover:underline">Модернистский Проект</h4>
-                            <p class="text-sm text-gray-500 font-light">Элена Вэнс, 1974</p>
-                        </a>
-                        <a href="book_detail.html" class="book-card block group md:mt-12">
-                            <div class="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 shadow-sm relative">
-                                <img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105 group-hover:grayscale-0" src="https://images.unsplash.com/photo-1544716278-e513176f20b5?w=500&q=80" alt="Book"/>
-                            </div>
-                            <h4 class="font-serif font-bold text-xl mb-1 text-primary group-hover:underline">Немой Структурализм</h4>
-                            <p class="text-sm text-gray-500 font-light">Джулиан Барнс-Хоффер, 1982</p>
-                        </a>
-                        <a href="book_detail.html" class="book-card block group">
-                            <div class="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 shadow-sm relative">
-                                <img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105 group-hover:grayscale-0" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500&q=80" alt="Book"/>
-                            </div>
-                            <h4 class="font-serif font-bold text-xl mb-1 text-primary group-hover:underline">Отголоски Формы</h4>
-                            <p class="text-sm text-gray-500 font-light">Сато Кензо, 1991</p>
-                        </a>
-                    </div>
+                    <div id="search-books-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
                 </div>
 
-                <div class="mb-20">
+                <div id="section-archives" class="mb-20 hidden">
                     <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
-                        <h2 class="text-3xl font-serif italic text-primary">Авторы</h2>
+                        <h2 class="text-3xl font-serif italic text-primary">Архивы</h2>
                     </div>
-                    <div class="space-y-4">
-                        <div class="flex items-center p-6 bg-white hover:bg-gray-50 border border-gray-100 transition-colors group cursor-pointer shadow-sm">
-                            <div class="w-16 h-16 rounded-full overflow-hidden mr-6 bg-gray-200">
-                                <img class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80" alt="Author">
-                            </div>
-                            <div class="flex-grow">
-                                <h4 class="font-serif font-bold text-lg text-primary group-hover:translate-x-1 transition-transform">Д-р Алистер Вэнс</h4>
-                                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1">Архитектурный теоретик</p>
-                            </div>
-                            <span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward_ios</span>
-                        </div>
-                        <div class="flex items-center p-6 bg-white hover:bg-gray-50 border border-gray-100 transition-colors group cursor-pointer shadow-sm">
-                            <div class="w-16 h-16 rounded-full overflow-hidden mr-6 bg-gray-200">
-                                <img class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&q=80" alt="Author">
-                            </div>
-                            <div class="flex-grow">
-                                <h4 class="font-serif font-bold text-lg text-primary group-hover:translate-x-1 transition-transform">Изабелла Торн</h4>
-                                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1">Редакционный куратор</p>
-                            </div>
-                            <span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward_ios</span>
-                        </div>
-                    </div>
+                    <div id="search-archives-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                 </div>
 
-                <div>
+                <div id="section-curations" class="mb-20 hidden">
                     <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
-                        <h2 class="text-3xl font-serif italic text-primary">Коллекции</h2>
+                        <h2 class="text-3xl font-serif italic text-primary">Подборки</h2>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <a href="catalog.html" class="relative group overflow-hidden h-64 block shadow-md">
-                            <div class="absolute inset-0 bg-primary opacity-40 z-10 transition-opacity group-hover:opacity-60"></div>
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=800" alt="Collection">
-                            <div class="absolute inset-0 z-20 flex flex-col justify-end p-8 text-white">
-                                <span class="text-[10px] font-bold uppercase tracking-[0.3em] mb-2 text-white/80">Архивы</span>
-                                <h3 class="text-2xl font-serif font-bold">Эпоха Брутализма</h3>
-                                <p class="text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-w-xs mt-2">Целенаправленное исследование бетонных форм и функционалистской эстетики.</p>
-                            </div>
-                        </a>
-                        <a href="catalog.html" class="relative group overflow-hidden h-64 block shadow-md">
-                            <div class="absolute inset-0 bg-primary opacity-40 z-10 transition-opacity group-hover:opacity-60"></div>
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=800" alt="Collection">
-                            <div class="absolute inset-0 z-20 flex flex-col justify-end p-8 text-white">
-                                <span class="text-[10px] font-bold uppercase tracking-[0.3em] mb-2 text-white/80">Кураторское</span>
-                                <h3 class="text-2xl font-serif font-bold">Эпистолярная Традиция</h3>
-                                <p class="text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-w-xs mt-2">Историческая переписка из закрытых хранилищ библиотеки.</p>
-                            </div>
-                        </a>
-                    </div>
+                    <div id="search-curations-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                 </div>
-
+                
+                <div id="no-results-msg" class="hidden text-center py-20">
+                    <span class="material-symbols-outlined text-6xl text-gray-300 mb-4">search_off</span>
+                    <h3 class="text-2xl font-serif font-bold text-primary">Ничего не найдено</h3>
+                    <p class="text-gray-500 mt-2">Попробуйте изменить запрос или поискать по другим ключевым словам.</p>
+                </div>
             </div>
         </section>
     </main>
 
     <div id="app-footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AppComponents !== 'undefined') AppComponents.init();
+        });
+    </script>
 </body>
 </html>

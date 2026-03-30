@@ -36,7 +36,7 @@ const AppComponents = {
                     <span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-primary text-3xl">search</span>
                     <input type="text" id="global-search-input" placeholder="Введите название, автора или эпоху..." 
                             class="w-full bg-transparent border-b-2 border-primary py-4 pl-12 pr-4 text-2xl font-serif text-primary focus:outline-none placeholder:text-gray-300"
-                            onkeypress="if(event.key === 'Enter') window.location.href='search_results.html'">
+                            onkeypress="if(event.key === 'Enter' && this.value.trim() !== '') window.location.href='search_results.html?q=' + encodeURIComponent(this.value.trim())">
                 </div>
                 <div class="mt-8 flex gap-4">
                     <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-2">Популярное:</span>

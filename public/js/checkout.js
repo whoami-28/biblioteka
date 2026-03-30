@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderCart() {
         if (!cartContainer) return;
-
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         cartContainer.innerHTML = '';
         let totalSum = 0;
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cart.forEach((item, index) => {
             totalSum += item.price * item.quantity;
             const imageUrl = item.image_url || 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800';
-
             const itemHTML = `
                 <div class="flex items-center justify-between border-b border-gray-200 py-6">
                     <div class="flex items-center space-x-6">
@@ -71,31 +69,25 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (currentStep === 1) {
                 if (cart.length === 0) return alert('Корзина пуста!');
-
                 document.getElementById('step-1-content').classList.add('hidden');
                 document.getElementById('step-2-content').classList.remove('hidden');
-
-                document.getElementById('progress-step-2').classList.replace('border-gray-200', 'border-primary');
-                document.getElementById('progress-step-2').classList.replace('bg-[#F7FAFC]', 'bg-primary');
-                document.getElementById('progress-step-2').classList.replace('text-primary', 'text-white');
-                document.getElementById('progress-text-2').classList.replace('text-gray-500', 'text-primary');
-                
                 actionBtn.innerText = 'Перейти к оплате';
                 currentStep = 2;
-
             } else if (currentStep === 2) {
                 document.getElementById('step-2-content').classList.add('hidden');
                 document.getElementById('step-3-content').classList.remove('hidden');
-
-                document.getElementById('progress-step-3').classList.replace('border-gray-200', 'border-primary');
-                document.getElementById('progress-step-3').classList.replace('bg-[#F7FAFC]', 'bg-primary');
-                document.getElementById('progress-step-3').classList.replace('text-gray-400', 'text-white');
-                document.getElementById('progress-text-3').classList.replace('text-gray-400', 'text-primary');
-
                 actionBtn.innerText = 'Оплатить заказ';
                 currentStep = 3;
-
             } else if (currentStep === 3) {
+                
+                // Проверяем, авторизован ли пользователь перед оплатой
+                const token = localStorage.getItem('curator_token');
+                if (!token) {
+                    alert('Для оформления заказа необходимо войти в аккаунт.');
+                    window.location.href = 'auth.html';
+                    return;
+                }
+
                 actionBtn.innerText = 'Обработка...';
                 actionBtn.disabled = true;
 
@@ -107,12 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const response = await fetch('/api/orders', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            items: cart,
-                            total: orderTotal,
-                            address: addressData
-                        })
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}` // <--- Передаем токен!
+                        },
+                        body: JSON.stringify({ items: cart, total: orderTotal, address: addressData })
                     });
 
                     const result = await response.json();
@@ -120,26 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (result.success) {
                         document.getElementById('step-3-content').classList.add('hidden');
                         document.getElementById('step-4-content').classList.remove('hidden');
-
                         document.getElementById('checkout-sidebar').classList.add('hidden');
-
                         localStorage.removeItem('cart');
-
+                        
                         const successText = document.querySelector('#step-4-content p');
                         if(successText) successText.innerHTML = `Благодарим за заказ. Номер вашей квитанции <strong class="text-primary font-bold">#MC-${result.orderId}</strong>.`;
-
-                        document.getElementById('progress-step-4').classList.replace('border-gray-200', 'border-primary');
-                        document.getElementById('progress-step-4').classList.replace('bg-[#F7FAFC]', 'bg-primary');
-                        document.getElementById('progress-step-4').classList.replace('text-gray-400', 'text-white');
-                        document.getElementById('progress-text-4').classList.replace('text-gray-400', 'text-primary');
                     } else {
                         throw new Error(result.error);
                     }
                 } catch (error) {
-                    console.error(error);
-                    alert('Произошла ошибка при оформлении заказа.');
-                    actionBtn.innerText = 'Оплатить заказ';
-                    actionBtn.disabled = false;
+                    alert('Ошибка при оформлении: Вы не авторизованы или сессия истекла.');
+                    window.location.href = 'auth.html';
                 }
             }
         });
