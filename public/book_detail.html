@@ -1,173 +1,96 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Архитектор Тишины | The Modern Curator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали материала | The Modern Curator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/main.js"></script>
-    <script src="js/components.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/style.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        secondary: '#f4f4f5'
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F7FAFC]">
+<body class="bg-white text-gray-900 font-sans antialiased flex flex-col min-h-screen">
 
     <div id="app-header"></div>
     <div id="app-search"></div>
 
-    <main class="pt-12 min-h-screen pt-8 page-enter">
-        <section class="max-w-[1400px] mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-16 items-start mb-24">
-            
-            <div class="md:col-span-5 lg:col-span-4 sticky top-12">
-                <div class="aspect-[3/4] bg-gray-100 overflow-hidden shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500 relative">
-                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800&q=80" class="w-full h-full object-cover" alt="Book Cover">
-                </div>
-                <div class="mt-8 flex justify-center space-x-4">
-                    <button class="bg-primary text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#1A202C] transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined text-sm">auto_stories</span> Читать фрагмент
-                    </button>
-                    <a href="cart_checkout.html" class="bg-white border border-gray-200 text-primary px-8 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors flex items-center justify-center shadow-sm">
-                        В корзину
-                    </a>
-                </div>
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-6xl page-enter">
+        
+        <a href="catalog.html" class="inline-flex items-center text-sm text-gray-500 hover:text-primary mb-8 transition-colors group">
+            <span class="mr-2 transform group-hover:-translate-x-1 transition-transform">&larr;</span> 
+            Вернуться в каталог
+        </a>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+            <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative shadow-md group">
+                <img id="book-image" src="" alt="Обложка материала" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
             </div>
 
-            <div class="md:col-span-7 lg:col-span-8 space-y-12">
-                <header class="space-y-4">
-                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Кураторские архивы • Том IV</span>
-                    <h1 class="text-5xl md:text-7xl font-serif tracking-tight text-primary leading-[1.1] font-bold">Архитектор Тишины</h1>
-                    <a href="search_results.html" class="text-xl font-serif italic text-gray-500 hover:text-primary transition-colors inline-block">автор Элена Торн</a>
-                </header>
-
-                <div class="grid grid-cols-3 gap-8 py-8 bg-white border border-gray-100 p-8 shadow-sm">
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Формат</p>
-                        <p class="font-serif text-lg text-primary">Твердый переплет</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Объем</p>
-                        <p class="font-serif text-lg text-primary">342 Страницы</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Язык</p>
-                        <p class="font-serif text-lg text-primary">Русский</p>
-                    </div>
+            <div class="flex flex-col justify-center">
+                <h1 id="book-title" class="text-4xl lg:text-5xl font-serif font-bold text-primary mb-3 leading-tight">
+                    Загрузка...
+                </h1>
+                
+                <p id="book-author" class="text-xl text-gray-500 mb-8 border-b border-gray-200 pb-6">
+                    Загрузка данных...
+                </p>
+                
+                <div id="book-price" class="text-3xl font-bold text-primary mb-8">
+                    $0.00
                 </div>
 
-                <div class="prose prose-lg max-w-none text-gray-600 font-light leading-relaxed">
-                    <h2 class="text-2xl font-serif text-primary mb-4 font-bold">Синопсис</h2>
-                    <p class="mb-4">В самом сердце города, который никогда не останавливается, существует здание, бросающее вызов законам акустики и времени. «Архитектор тишины» исследует жизнь Джулиана Вэйна — человека, который проектировал здания не для того, чтобы на них смотреть, а для того, чтобы их чувствовать. Элена Торн ткет мастерское полотно архитектурной философии, забытых историй и глубокой силы безмолвия.</p>
-                    <p>Пока самый амбициозный проект Джулиана начинает рушиться под тяжестью современного прогресса, молодой архивный исследователь обнаруживает скрытую серию чертежей, намекающих на то, что здание никогда и не должно было быть завершено. За этим следует пугающее путешествие по коридорам памяти и пространствам, которые мы оставляем между нашими словами.</p>
+                <div class="mb-10 p-6 bg-gray-50 rounded-sm">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Характеристики издания</h3>
+                    <ul id="book-specs" class="text-gray-700 space-y-3 text-sm">
+                        </ul>
                 </div>
 
-                <div class="bg-gray-50 p-10 space-y-6 border border-gray-100 mt-12">
-                    <div class="flex items-center gap-6">
-                        <div class="w-20 h-20 rounded-full overflow-hidden grayscale">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80" class="w-full h-full object-cover" alt="Author">
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-serif font-bold text-primary">Элена Торн</h3>
-                            <p class="font-sans text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">Писатель и Историк</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 leading-relaxed font-light max-w-2xl">
-                        Элена Торн — удостоенная наград романистка, чьи работы сосредоточены на пересечении человеческой психологии и искусственной среды. Она базируется в Лондоне, а её личные архивы хранятся в Королевском институте литературы. «Архитектор тишины» — её пятый опубликованный том.
+                <div class="mb-10">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">О материале</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm lg:text-base">
+                        Этот материал является частью курируемой коллекции. Он прошел тщательный отбор нашими специалистами. Для получения полного доступа или приобретения физической копии в вашу личную библиотеку, пожалуйста, добавьте его в корзину.
                     </p>
                 </div>
-            </div>
-        </section>
 
-        <section class="bg-white py-24 border-t border-b border-gray-100">
-            <div class="max-w-[1400px] mx-auto px-8">
-                <div class="flex justify-between items-end mb-16">
-                    <div class="space-y-4">
-                        <h2 class="text-4xl font-serif font-bold text-primary">Отзывы читателей</h2>
-                        <div class="flex items-center gap-4">
-                            <div class="flex text-primary">
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star_half</span>
-                            </div>
-                            <span class="font-sans text-sm font-medium text-gray-500">4.8 Средний рейтинг (1.2k отзывов)</span>
-                        </div>
-                    </div>
-                    <button class="border-b-2 border-primary pb-1 text-[10px] font-bold uppercase tracking-widest hover:text-gray-500 transition-colors">Оставить отзыв</button>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="bg-[#F7FAFC] p-8 space-y-4 border border-gray-100">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-serif font-bold text-lg text-primary">Атмосферный шедевр</h4>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1">Маркус Чен • Проверенный читатель</p>
-                            </div>
-                            <div class="flex text-primary text-sm">
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-500 leading-relaxed font-light">У Торн есть способ описывать пространство так, что вы чувствуете клаустрофобию и свободу одновременно. Проза точная, острая и глубоко интеллектуальная. Я ловил себя на том, что часами задерживаюсь на некоторых страницах.</p>
-                    </div>
-
-                    <div class="bg-[#F7FAFC] p-8 space-y-4 border border-gray-100">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-serif font-bold text-lg text-primary">Сложно и трогательно</h4>
-                                <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1">Изабелла Росси • Участник архива</p>
-                            </div>
-                            <div class="flex text-primary text-sm">
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-500 leading-relaxed font-light">Потрясающее исследование того, что значит оставить наследие. Связь между архитектором и исследователем кажется органичной и заслуженной. Это кураторское повествование в лучшем виде.</p>
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+                    <button id="add-to-cart-btn" class="bg-primary text-white px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors duration-300 w-full sm:w-auto text-center">
+                        В корзину
+                    </button>
+                    <button class="border border-gray-300 text-primary px-8 py-4 text-sm font-bold uppercase tracking-wider hover:border-primary transition-colors duration-300 w-full sm:w-auto text-center">
+                        В избранное
+                    </button>
                 </div>
             </div>
-        </section>
-
-        <section class="py-24 max-w-[1400px] mx-auto px-8">
-            <h2 class="text-3xl font-serif font-bold text-primary mb-12">Похожие кураторские подборки</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <a href="book_detail.html" class="group block">
-                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden mb-4 shadow-sm transition-transform duration-500 group-hover:-translate-y-2">
-                        <img src="https://images.unsplash.com/photo-1544716278-e513176f20b5?q=80&w=400" class="w-full h-full object-cover grayscale" alt="Book">
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-primary group-hover:underline">Серый Коридор</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">С.Дж. Арис</p>
-                </a>
-                <a href="book_detail.html" class="group block">
-                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden mb-4 shadow-sm transition-transform duration-500 group-hover:-translate-y-2">
-                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400" class="w-full h-full object-cover" alt="Book">
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-primary group-hover:underline">Основы Света</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Дэвид М. Холл</p>
-                </a>
-                <a href="book_detail.html" class="group block">
-                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden mb-4 shadow-sm transition-transform duration-500 group-hover:-translate-y-2">
-                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400" class="w-full h-full object-cover grayscale" alt="Book">
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-primary group-hover:underline">Пустоты</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Элена Торн</p>
-                </a>
-                <a href="book_detail.html" class="group block">
-                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden mb-4 shadow-sm transition-transform duration-500 group-hover:-translate-y-2">
-                        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400" class="w-full h-full object-cover grayscale" alt="Book">
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-primary group-hover:underline">Городское Эхо</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Л.Дж. Мерсер</p>
-                </a>
-            </div>
-        </section>
+        </div>
     </main>
 
     <div id="app-footer"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/book_detail.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AppComponents !== 'undefined') {
+                // Передаем 'catalog', чтобы подсветить нужный пункт меню в шапке
+                AppComponents.init('catalog');
+            }
+        });
+    </script>
 </body>
 </html>

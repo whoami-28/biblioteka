@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/whoami-28/biblioteka#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "sqlite3": "^6.0.1"
   }
 }

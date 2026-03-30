@@ -43,31 +43,9 @@
                 
                 <div id="step-1-content" class="transition-opacity duration-300">
                     <h1 class="text-4xl md:text-5xl font-serif font-bold mb-12 text-primary tracking-tight">Проверьте ваш выбор</h1>
-                    <div class="space-y-6 mb-16">
-                        <div class="flex gap-8 bg-white p-6 shadow-sm border border-gray-100 group relative transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
-                            <a href="book_detail.html" class="w-32 h-44 flex-shrink-0 bg-gray-100 overflow-hidden block">
-                                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=300&q=80" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" alt="Book">
-                            </a>
-                            <div class="flex-grow flex flex-col justify-between py-2">
-                                <div>
-                                    <div class="flex justify-between items-start mb-2">
-                                        <a href="book_detail.html" class="text-xl font-serif italic text-primary hover:underline">Этика Брутализма: Том I</a>
-                                        <span class="text-lg font-bold text-primary">$124.00</span>
-                                    </div>
-                                    <p class="text-sm text-gray-500 max-w-md font-light">Архивное издание в твердом переплете. Содержит галогенидо-серебряные отпечатки европейских модернистских достопримечательностей.</p>
-                                </div>
-                                <div class="flex items-center gap-6 mt-4">
-                                    <div class="flex items-center border border-gray-200 px-3 py-1">
-                                        <button class="text-xs hover:text-primary">—</button>
-                                        <span class="px-4 text-sm font-bold">1</span>
-                                        <button class="text-xs hover:text-primary">+</button>
-                                    </div>
-                                    <button class="text-[10px] uppercase font-bold tracking-widest text-gray-400 hover:text-primary transition-colors">Отложить</button>
-                                    <button class="text-[10px] uppercase font-bold tracking-widest text-red-400 hover:text-red-600 transition-colors">Удалить</button>
-                                </div>
-                            </div>
+                    
+                    <div id="cart-items-container" class="space-y-6 mb-16">
                         </div>
-                    </div>
                 </div>
 
                 <div id="step-2-content" class="hidden transition-opacity duration-300">
@@ -101,7 +79,6 @@
                 <div id="step-3-content" class="hidden transition-opacity duration-300">
                     <h1 class="text-4xl md:text-5xl font-serif font-bold mb-12 text-primary tracking-tight">Оплата</h1>
                     <section class="bg-white p-10 shadow-sm border border-gray-100">
-                        
                         <div class="mb-10 flex gap-4">
                             <label class="flex items-center gap-3 cursor-pointer border border-primary p-4 bg-gray-50 flex-1 shadow-sm transition-all">
                                 <input type="radio" name="payment" checked class="text-primary focus:ring-primary w-4 h-4">
@@ -151,14 +128,13 @@
                 <div class="sticky top-12 bg-primary text-white p-10 shadow-editorial">
                     <h2 class="text-3xl font-serif italic mb-8">Сумма заказа</h2>
                     <div class="space-y-4 mb-8 text-sm opacity-80 font-light">
-                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Подытог</span><span>$604.00</span></div>
-                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Доставка (со страховкой)</span><span>$35.00</span></div>
-                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Расчетный налог</span><span>$48.32</span></div>
-                        <div class="flex justify-between pt-4 text-xl font-bold opacity-100"><span>Итого</span><span>$687.32</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Подытог</span><span id="cart-subtotal">$0.00</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Доставка (со страховкой)</span><span>$15.00</span></div>
+                        <div class="flex justify-between pt-4 text-xl font-bold opacity-100"><span>Итого</span><span id="cart-total">$0.00</span></div>
                     </div>
                     
-                    <button id="checkout-action-btn" onclick="CheckoutFlow.nextStep()" class="w-full bg-white text-primary py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-200 transition-colors">
-                        Перейти к доставке
+                    <button id="checkout-action-btn" class="w-full bg-white text-primary py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-200 transition-colors">
+                        Оформить заказ
                     </button>
                     
                     <p class="text-[10px] text-white/40 leading-relaxed text-center mt-4">
@@ -173,7 +149,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            AppComponents.init('cart');
+            if (typeof AppComponents !== 'undefined') {
+                AppComponents.init('cart');
+            }
         });
     </script>
 </body>

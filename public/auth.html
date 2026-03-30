@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Вход | The Modern Curator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F7FAFC] flex flex-col min-h-screen">
+
+    <div id="app-header"></div>
+
+    <main class="flex-grow flex items-center justify-center py-12 px-4 page-enter">
+        <div class="max-w-md w-full bg-white p-10 shadow-editorial border border-gray-100">
+            <div class="text-center mb-10">
+                <h2 id="auth-title" class="text-3xl font-serif font-bold text-primary tracking-tight">Вход</h2>
+                <p id="auth-subtitle" class="mt-2 text-sm text-gray-500">Войдите, чтобы получить доступ к архивам</p>
+            </div>
+
+            <form id="auth-form" class="space-y-6">
+                <div id="name-field" class="hidden">
+                    <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Полное имя</label>
+                    <input type="text" id="name-input" placeholder="Джулиан Вэйн" class="w-full border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                </div>
+                
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Электронная почта</label>
+                    <input type="email" id="email-input" required placeholder="j.vane@curator.com" class="w-full border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary transition-colors">
+                </div>
+                
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Пароль</label>
+                    <input type="password" id="password-input" required placeholder="••••••••" class="w-full border-b border-gray-200 bg-transparent py-2 focus:border-primary outline-none text-primary tracking-widest transition-colors">
+                </div>
+
+                <div id="auth-error" class="text-red-500 text-xs font-bold uppercase tracking-widest hidden text-center"></div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-primary text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-gray-800 transition-colors shadow-sm mt-4">
+                    Войти
+                </button>
+            </form>
+
+            <div class="mt-8 text-center">
+                <button id="toggle-auth-btn" class="text-[10px] uppercase tracking-widest font-bold text-gray-400 hover:text-primary transition-colors">
+                    Нет аккаунта? Зарегистрироваться
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AppComponents !== 'undefined') AppComponents.init();
+        });
+    </script>
+</body>
+</html>
